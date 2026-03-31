@@ -9,8 +9,8 @@
   "characters": {
     "narrator": {
       "name": "ナレーター",
-      "speaker_id": 888753760,
-      "speed_scale": 1.0,
+      "speaker_id": 1310138979,
+      "speed_scale": 0.9,
       "tempo_dynamics_scale": 1.5,
       "description": "落ち着いた男性の声。説教ではなく、寄り添うトーン。"
     }
@@ -36,7 +36,7 @@
     "stock_ratio": 0.4,
     "title_closing_ratio": 0.1,
     "stock_brightness_adjust": -0.12,
-    "overlay_bg_opacity": 0.85,
+    "overlay_bg_opacity": 1.0,
     "theme": {
       "bg_color": "#0a0a1a",
       "accent_color": "#ffd700",

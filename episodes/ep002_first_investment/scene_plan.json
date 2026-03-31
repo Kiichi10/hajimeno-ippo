@@ -1,7 +1,7 @@
 {
   "episode_dir": "/Users/kiichi/Documents/VS Code/最初の一歩/episodes/ep002_first_investment",
   "total_scenes": 15,
-  "total_duration_sec": 93.43,
+  "total_duration_sec": 91.48,
   "scenes": [
     {
       "visual_type": "animated_panel",
@@ -19,7 +19,7 @@
       "description": "ストック+テキスト: あなたが怖いと感じるのは、正常だ。なぜなら、誰も教えてくれな",
       "line_index": 1,
       "line_text": "あなたが怖いと感じるのは、正常だ。なぜなら、誰も教えてくれなかったから。",
-      "duration_sec": 6.79,
+      "duration_sec": 6.4,
       "stock_video": "assets/stock_cache/6a33a5adf059_finance_money.mp4"
     },
     {
@@ -30,7 +30,7 @@
       "description": "ストック+テキスト: 学校では教わらない。親も教えてくれない。だから「わからない」",
       "line_index": 2,
       "line_text": "学校では教わらない。親も教えてくれない。だから「わからない」のは当たり前だ。",
-      "duration_sec": 6.68,
+      "duration_sec": 6.46,
       "stock_video": "assets/stock_cache/6a33a5adf059_finance_money.mp4"
     },
     {
@@ -41,7 +41,7 @@
       "description": "ストック+テキスト: でも、1つだけ知っておいてほしい。投資とは、ギャンブルではな",
       "line_index": 3,
       "line_text": "でも、1つだけ知っておいてほしい。投資とは、ギャンブルではない。",
-      "duration_sec": 5.47,
+      "duration_sec": 5.64,
       "stock_video": "assets/stock_cache/5180b07647d9_stock_market.mp4"
     },
     {
@@ -52,7 +52,7 @@
       "description": "ストック+テキスト: 投資とは、「未来の自分にお金を届ける仕組み」だ。",
       "line_index": 4,
       "line_text": "投資とは、「未来の自分にお金を届ける仕組み」だ。",
-      "duration_sec": 4.4,
+      "duration_sec": 4.59,
       "stock_video": "assets/stock_cache/de4db4119bf8_future_city.mp4"
     },
     {
@@ -63,7 +63,7 @@
       "description": "ストック+テキスト: たとえば毎月1万円。これをただ貯金すると、30年後には360",
       "line_index": 5,
       "line_text": "たとえば毎月1万円。これをただ貯金すると、30年後には360万円。",
-      "duration_sec": 7.53,
+      "duration_sec": 7.22,
       "stock_video": "assets/stock_cache/af27e5938cee_piggy_bank_savings.mp4"
     },
     {
@@ -74,7 +74,7 @@
       "description": "ストック+テキスト: でも同じ1万円を投資に回すと、30年後には約1,220万円に",
       "line_index": 6,
       "line_text": "でも同じ1万円を投資に回すと、30年後には約1,220万円になる可能性がある。",
-      "duration_sec": 7.92,
+      "duration_sec": 7.76,
       "stock_video": "assets/stock_cache/5180b07647d9_stock_market.mp4"
     },
     {
@@ -83,7 +83,7 @@
       "description": "データパネル: その差、860万円。この差を生むのが「複利」という仕組みだ。",
       "line_index": 7,
       "line_text": "その差、860万円。この差を生むのが「複利」という仕組みだ。",
-      "duration_sec": 6.64
+      "duration_sec": 6.03
     },
     {
       "visual_type": "stock_overlay",
@@ -93,7 +93,7 @@
       "description": "ストック+テキスト: 難しく考えなくていい。証券口座を開いて、毎月1万円を積み立て",
       "line_index": 8,
       "line_text": "難しく考えなくていい。証券口座を開いて、毎月1万円を積み立てる。やることはそれだけだ。",
-      "duration_sec": 8.6,
+      "duration_sec": 8.2,
       "stock_video": "assets/stock_cache/00de7c5f8ff2_stock_exchange.mp4"
     },
     {
@@ -104,7 +104,7 @@
       "description": "ストック+テキスト: 「でも暴落したらどうするの？」そう思うだろう。",
       "line_index": 9,
       "line_text": "「でも暴落したらどうするの？」そう思うだろう。",
-      "duration_sec": 4.11,
+      "duration_sec": 3.68,
       "stock_video": "assets/stock_cache/6a33a5adf059_finance_money.mp4"
     },
     {
@@ -115,7 +115,7 @@
       "description": "ストック+テキスト: 過去100年間、世界経済は何度も暴落した。でも、一度も回復し",
       "line_index": 10,
       "line_text": "過去100年間、世界経済は何度も暴落した。でも、一度も回復しなかったことはない。",
-      "duration_sec": 8.0,
+      "duration_sec": 8.23,
       "stock_video": "assets/stock_cache/6a33a5adf059_finance_money.mp4"
     },
     {
@@ -148,7 +148,7 @@
       "description": "ストック+テキスト: 大事なのは、今日、動いたという事実だ。",
       "line_index": 13,
       "line_text": "大事なのは、今日、動いたという事実だ。",
-      "duration_sec": 4.18,
+      "duration_sec": 3.85,
       "stock_video": "assets/stock_cache/6a33a5adf059_finance_money.mp4"
     },
     {
@@ -157,7 +157,7 @@
       "description": "クロージング",
       "line_index": 14,
       "line_text": "あなたの未来は、今日のあなたが決める。",
-      "duration_sec": 3.6
+      "duration_sec": 3.91
     }
   ]
 }
