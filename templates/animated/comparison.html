@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1920px; height: 1080px; background: #0a0a1a;
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', sans-serif;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.container { width: 1500px; }
+.title {
+  font-size: 44px; color: #fff; font-weight: 700; text-align: center;
+  margin-bottom: 60px;
+  opacity: 0; animation: fadeIn 0.8s ease-out 0.3s forwards;
+}
+.highlight { color: #ff4444; }
+.comparison { display: flex; justify-content: center; gap: 100px; align-items: flex-end; }
+.person { text-align: center; }
+.person-label {
+  font-size: 30px; color: #aaaacc; margin-bottom: 15px;
+  opacity: 0;
+}
+.person:nth-child(1) .person-label { animation: fadeIn 0.5s ease-out 1.0s forwards; }
+.person:nth-child(3) .person-label { animation: fadeIn 0.5s ease-out 1.5s forwards; }
+
+.age { font-size: 22px; color: #666; margin-bottom: 10px; opacity: 0; }
+.person:nth-child(1) .age { animation: fadeIn 0.5s ease-out 1.0s forwards; }
+.person:nth-child(3) .age { animation: fadeIn 0.5s ease-out 1.5s forwards; }
+
+.amount-bar {
+  width: 250px; border-radius: 12px 12px 0 0;
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-bottom: 25px; height: 0;
+}
+.person:nth-child(1) .amount-bar {
+  background: linear-gradient(180deg, #ffd700, #ff8c00);
+  animation: growBar 1.5s ease-out 1.5s forwards;
+  --target-height: 400px;
+}
+.person:nth-child(3) .amount-bar {
+  background: linear-gradient(180deg, #555, #333);
+  animation: growBar 1.5s ease-out 2.0s forwards;
+  --target-height: 200px;
+}
+
+.amount {
+  font-size: 48px; font-weight: 900; color: #fff;
+  opacity: 0;
+}
+.person:nth-child(1) .amount { animation: fadeIn 0.5s ease-out 2.8s forwards; }
+.person:nth-child(3) .amount { animation: fadeIn 0.5s ease-out 3.3s forwards; }
+
+.vs {
+  font-size: 80px; color: #333; font-weight: 900;
+  align-self: center; margin-bottom: 100px;
+  opacity: 0; animation: fadeIn 0.5s ease-out 1.2s forwards;
+}
+
+.gap-box {
+  text-align: center; margin-top: 60px;
+  padding: 30px 60px; border: 2px solid #ff4444; border-radius: 16px;
+  background: rgba(255,68,68,0.1);
+  opacity: 0; animation: fadeIn 0.8s ease-out 4.0s forwards;
+  transform-origin: center;
+}
+.gap-number { font-size: 64px; font-weight: 900; color: #ff4444; }
+.gap-label { font-size: 26px; color: #aaaacc; margin-top: 10px; }
+
+@keyframes growBar {
+  from { height: 0; }
+  to { height: var(--target-height); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="title">開始が<span class="highlight">10年遅れる</span>だけで</div>
+  <div class="comparison">
+    <div class="person">
+      <div class="person-label">30歳で開始</div>
+      <div class="age">→ 60歳時点</div>
+      <div class="amount-bar"><div class="amount">2,280万</div></div>
+    </div>
+    <div class="vs">VS</div>
+    <div class="person">
+      <div class="person-label">40歳で開始</div>
+      <div class="age">→ 60歳時点</div>
+      <div class="amount-bar"><div class="amount">1,160万</div></div>
+    </div>
+  </div>
+  <div class="gap-box">
+    <div class="gap-number">−1,120万円</div>
+    <div class="gap-label">努力では埋められない、時間だけが生む不可逆の格差</div>
+  </div>
+</div>
+</body>
+</html>

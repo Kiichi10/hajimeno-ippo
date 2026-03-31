@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1920px; height: 1080px; background: #0a0a1a;
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', sans-serif;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.container { text-align: center; }
+
+.main-text {
+  font-size: 52px; color: #fff; font-weight: 900;
+  line-height: 1.7; letter-spacing: 2px;
+}
+.main-text .line {
+  display: block; opacity: 0;
+}
+.main-text .line:nth-child(1) { animation: fadeUp 0.8s ease-out 0.5s forwards; }
+.main-text .line:nth-child(2) { animation: fadeUp 0.8s ease-out 1.3s forwards; }
+.main-text .line:nth-child(3) { animation: fadeUp 0.8s ease-out 2.1s forwards; }
+
+.gold { color: #ffd700; font-size: 60px; }
+
+.divider {
+  width: 300px; height: 2px;
+  background: linear-gradient(90deg, transparent, #ffd700, transparent);
+  margin: 40px auto;
+  opacity: 0; animation: fadeUp 0.8s ease-out 3.0s forwards;
+}
+
+.cta {
+  font-size: 28px; color: #aaaacc; line-height: 1.8;
+  opacity: 0; animation: fadeUp 0.8s ease-out 3.5s forwards;
+}
+
+.channel-name {
+  font-size: 22px; color: #666; margin-top: 30px;
+  opacity: 0; animation: fadeUp 0.8s ease-out 4.0s forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="main-text">
+    <span class="line">複利とは</span>
+    <span class="line"><span class="gold">待てる人間だけが手にする</span></span>
+    <span class="line">静かな暴力である</span>
+  </div>
+  <div class="divider"></div>
+  <div class="cta">
+    時間は買えない。だから今日始める。<br>
+    まずは証券口座を開く。それだけでいい。
+  </div>
+  <div class="channel-name">最初の一歩 — 動けなかったあなたへ</div>
+</div>
+</body>
+</html>

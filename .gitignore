@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.env
+token_*.json
+client_secret.json
+episodes/*/audio/
+episodes/*/segments/
+episodes/*/output/
+episodes/*/stock/
+assets/stock_cache/*.mp4
+.DS_Store
+*.webm

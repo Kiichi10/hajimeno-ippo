@@ -1,0 +1,88 @@
+{
+  "episode_dir": "/Users/kiichi/Documents/VS Code/最初の一歩/episodes/ep001_compound_interest",
+  "total_scenes": 9,
+  "total_duration_sec": 59.5,
+  "scenes": [
+    {
+      "visual_type": "animated_panel",
+      "template": "templates/animated/title_card.html",
+      "description": "タイトルカード",
+      "line_index": 0,
+      "line_text": "300万円。この金額が、人生の分岐点になる。",
+      "duration_sec": 5.13
+    },
+    {
+      "visual_type": "stock_overlay",
+      "stock_query": "life journey",
+      "overlay_text": "ウォーレン・バフェットはこう言った。",
+      "overlay_sub": "「最初の2万ドルを貯めることが、人生で最も難しい」と。",
+      "description": "ストック+テキスト: ウォーレン・バフェットはこう言った。「最初の2万ドルを貯める",
+      "line_index": 1,
+      "line_text": "ウォーレン・バフェットはこう言った。「最初の2万ドルを貯めることが、人生で最も難しい」と。",
+      "duration_sec": 7.11,
+      "stock_video": "assets/stock_cache/62f9a4a9654b_life_journey.mp4"
+    },
+    {
+      "visual_type": "stock_overlay",
+      "stock_query": "finance money",
+      "overlay_text": "なぜか。答えは、複利にある。",
+      "overlay_sub": "",
+      "description": "ストック+テキスト: なぜか。答えは、複利にある。",
+      "line_index": 2,
+      "line_text": "なぜか。答えは、複利にある。",
+      "duration_sec": 3.58,
+      "stock_video": "assets/stock_cache/6a33a5adf059_finance_money.mp4"
+    },
+    {
+      "visual_type": "animated_panel",
+      "template": "templates/animated/bar_chart.html",
+      "description": "データパネル: 300万円を年利7%で運用した場合、10年後には590万円。",
+      "line_index": 3,
+      "line_text": "300万円を年利7%で運用した場合、10年後には590万円。20年後には1,160万円。そして30年後には2,280万円になる。",
+      "duration_sec": 12.96
+    },
+    {
+      "visual_type": "animated_panel",
+      "template": "templates/animated/bar_chart.html",
+      "description": "データパネル: 元本の7.6倍。これが複利の破壊力だ。",
+      "line_index": 4,
+      "line_text": "元本の7.6倍。これが複利の破壊力だ。",
+      "duration_sec": 4.48
+    },
+    {
+      "visual_type": "animated_panel",
+      "template": "templates/animated/bar_chart.html",
+      "description": "データパネル: しかし、もし運用を始めるのが10年遅れたらどうなるか。",
+      "line_index": 5,
+      "line_text": "しかし、もし運用を始めるのが10年遅れたらどうなるか。",
+      "duration_sec": 4.84
+    },
+    {
+      "visual_type": "animated_panel",
+      "template": "templates/animated/comparison.html",
+      "description": "比較パネル: 30歳で始めた人と、40歳で始めた人。同じ300万円でも、6",
+      "line_index": 6,
+      "line_text": "30歳で始めた人と、40歳で始めた人。同じ300万円でも、60歳時点での差は1,120万円。",
+      "duration_sec": 9.39
+    },
+    {
+      "visual_type": "stock_overlay",
+      "stock_query": "clock time",
+      "overlay_text": "この差は、努力では埋められない。",
+      "overlay_sub": "時間だけが生み出す、不可逆の格差だ。",
+      "description": "ストック+テキスト: この差は、努力では埋められない。時間だけが生み出す、不可逆の",
+      "line_index": 7,
+      "line_text": "この差は、努力では埋められない。時間だけが生み出す、不可逆の格差だ。",
+      "duration_sec": 6.47,
+      "stock_video": "assets/stock_cache/42f213ac5113_clock_time.mp4"
+    },
+    {
+      "visual_type": "animated_panel",
+      "template": "templates/animated/closing.html",
+      "description": "クロージング",
+      "line_index": 8,
+      "line_text": "複利とは、待てる人間だけが手にする、静かな暴力である。",
+      "duration_sec": 5.54
+    }
+  ]
+}

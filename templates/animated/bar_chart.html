@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1920px; height: 1080px;
+  background: #0a0a1a;
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', sans-serif;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+
+.container { width: 1500px; height: 800px; position: relative; }
+
+.title {
+  font-size: 44px; color: #fff; font-weight: 700;
+  text-align: center; margin-bottom: 50px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 0.3s forwards;
+}
+.highlight { color: #ffd700; }
+
+.chart {
+  width: 1300px; height: 550px; margin: 0 auto;
+  position: relative;
+  border-left: 2px solid #333; border-bottom: 2px solid #333;
+}
+
+.bar-group {
+  position: absolute; bottom: 0;
+  display: flex; flex-direction: column; align-items: center;
+}
+
+.bar {
+  width: 140px; border-radius: 10px 10px 0 0;
+  position: relative;
+  height: 0;
+  /* Each bar animates to its target height */
+}
+
+.bar-group:nth-child(1) .bar {
+  background: linear-gradient(180deg, #ffd700, #ff8c00);
+  animation: growBar 1.2s ease-out 1.0s forwards;
+  --target-height: 80px;
+}
+.bar-group:nth-child(2) .bar {
+  background: linear-gradient(180deg, #ffd700, #ff8c00);
+  animation: growBar 1.2s ease-out 1.8s forwards;
+  --target-height: 170px;
+}
+.bar-group:nth-child(3) .bar {
+  background: linear-gradient(180deg, #ffd700, #e67e00);
+  animation: growBar 1.2s ease-out 2.6s forwards;
+  --target-height: 320px;
+}
+.bar-group:nth-child(4) .bar {
+  background: linear-gradient(180deg, #ff4444, #cc0000);
+  animation: growBar 1.4s ease-out 3.4s forwards;
+  --target-height: 480px;
+}
+
+@keyframes growBar {
+  from { height: 0; }
+  to { height: var(--target-height); }
+}
+
+.bar-label {
+  color: #fff; font-size: 36px; font-weight: 700;
+  position: absolute; top: -50px; width: 100%; text-align: center;
+  opacity: 0;
+}
+.bar-group:nth-child(1) .bar-label { animation: fadeIn 0.5s ease-out 2.0s forwards; }
+.bar-group:nth-child(2) .bar-label { animation: fadeIn 0.5s ease-out 2.8s forwards; }
+.bar-group:nth-child(3) .bar-label { animation: fadeIn 0.5s ease-out 3.6s forwards; }
+.bar-group:nth-child(4) .bar-label { animation: fadeIn 0.5s ease-out 4.6s forwards; font-size: 42px; color: #ff4444; }
+
+.year-label {
+  color: #888; font-size: 22px; margin-top: 15px;
+  opacity: 0;
+}
+.bar-group:nth-child(1) .year-label { animation: fadeIn 0.5s ease-out 1.0s forwards; }
+.bar-group:nth-child(2) .year-label { animation: fadeIn 0.5s ease-out 1.8s forwards; }
+.bar-group:nth-child(3) .year-label { animation: fadeIn 0.5s ease-out 2.6s forwards; }
+.bar-group:nth-child(4) .year-label { animation: fadeIn 0.5s ease-out 3.4s forwards; }
+
+.multiplier {
+  color: #ffd700; font-size: 20px;
+  position: absolute; bottom: -55px; width: 200px; text-align: center; left: -30px;
+  opacity: 0;
+}
+.bar-group:nth-child(4) .multiplier {
+  color: #ff4444; font-size: 28px; font-weight: 900;
+  animation: fadeIn 0.5s ease-out 4.8s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="title">300万円を<span class="highlight">年利7%</span>で運用した場合</div>
+  <div class="chart">
+    <div class="bar-group" style="left: 120px;">
+      <div class="bar"><div class="bar-label">300万</div></div>
+      <div class="year-label">開始</div>
+      <div class="multiplier">×1.0</div>
+    </div>
+    <div class="bar-group" style="left: 380px;">
+      <div class="bar"><div class="bar-label">590万</div></div>
+      <div class="year-label">10年後</div>
+      <div class="multiplier">×2.0</div>
+    </div>
+    <div class="bar-group" style="left: 640px;">
+      <div class="bar"><div class="bar-label">1,160万</div></div>
+      <div class="year-label">20年後</div>
+      <div class="multiplier">×3.9</div>
+    </div>
+    <div class="bar-group" style="left: 900px;">
+      <div class="bar"><div class="bar-label">2,280万</div></div>
+      <div class="year-label">30年後</div>
+      <div class="multiplier">×7.6</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

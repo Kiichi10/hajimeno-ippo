@@ -1,0 +1,83 @@
+{
+  "project_name": "最初の一歩",
+  "channel_name": "最初の一歩 — 動けなかったあなたへ",
+  "channel_concept": "金融×モチベーション。知識はあるけど動けない人の背中を押す。毎回「最初の1アクション」を提示。",
+  "format": "faceless_long",
+  "target_duration_sec": 600,
+  "target_audience": "20-40代、投資未経験〜初心者、動けずにいる層",
+
+  "characters": {
+    "narrator": {
+      "name": "ナレーター",
+      "speaker_id": 888753760,
+      "speed_scale": 1.0,
+      "tempo_dynamics_scale": 1.5,
+      "description": "落ち着いた男性の声。説教ではなく、寄り添うトーン。"
+    }
+  },
+
+  "audio": {
+    "engine": "aivisspeech",
+    "api_url": "http://127.0.0.1:10101",
+    "sample_rate": 44100,
+    "line_gap_sec": 0.5
+  },
+
+  "video": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "crf": 18,
+    "preset": "medium"
+  },
+
+  "visuals": {
+    "panel_ratio": 0.5,
+    "stock_ratio": 0.4,
+    "title_closing_ratio": 0.1,
+    "stock_brightness_adjust": -0.12,
+    "overlay_bg_opacity": 0.85,
+    "theme": {
+      "bg_color": "#0a0a1a",
+      "accent_color": "#ffd700",
+      "danger_color": "#ff4444",
+      "text_color": "#ffffff",
+      "sub_text_color": "#aaaacc",
+      "font_family": "'Noto Sans JP', 'Hiragino Kaku Gothic Pro', sans-serif"
+    }
+  },
+
+  "stock_video": {
+    "source": "pixabay",
+    "api_key_env": "PIXABAY_API_KEY",
+    "cache_dir": "assets/stock_cache",
+    "prefer_video": true,
+    "min_duration_sec": 8
+  },
+
+  "bgm": {
+    "default": "assets/bgm/lo-fi-ambient.mp3",
+    "volume": 0.08
+  },
+
+  "se": {
+    "transition_whoosh": "assets/se/whoosh.mp3",
+    "number_reveal": "assets/se/chime.mp3",
+    "section_change": "assets/se/soft_impact.mp3"
+  },
+
+  "youtube": {
+    "channel_id": "",
+    "category": "Education",
+    "default_tags": ["投資", "資産形成", "お金の勉強", "初心者", "新NISA", "複利", "マインドセット", "最初の一歩"],
+    "description_template": "prompts/description_template.md",
+    "playlists": {}
+  },
+
+  "paths": {
+    "scripts_dir": "scripts",
+    "templates_dir": "templates",
+    "output_dir": "output",
+    "token_file": "token_first_step.json"
+  }
+}
