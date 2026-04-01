@@ -93,31 +93,53 @@ def classify_line(text: str, index: int, total: int) -> dict:
         }
 
     # Lines with emotional/motivational content → stock video + overlay
+    # Each keyword maps to multiple query candidates to avoid reuse
     stock_keywords = {
-        "人生": "life journey",
-        "未来": "future city",
-        "時間": "clock time",
-        "不安": "worried person",
-        "働": "office work",
-        "努力": "training hard",
-        "始め": "starting line",
-        "一歩": "first step walking",
-        "お金": "money coins",
-        "貯金": "piggy bank savings",
-        "投資": "stock market",
-        "証券": "stock exchange",
-        "バフェット": "warren buffett",
-        "老後": "retirement elderly",
-        "格差": "inequality gap",
-        "自由": "freedom nature",
-        "夢": "dream sky",
+        "人生": ["life journey sunset", "road path future", "person walking forward"],
+        "未来": ["future city lights", "sunrise horizon", "child growing up"],
+        "時間": ["clock time passing", "hourglass sand", "calendar pages"],
+        "不安": ["worried thinking person", "rain window lonely", "crossroads decision"],
+        "働": ["office work desk", "businessman typing", "modern workplace"],
+        "怖": ["fear courage dark", "nervous hands", "looking down cliff"],
+        "教": ["classroom education", "teacher blackboard", "library books studying"],
+        "努力": ["training determination", "climbing mountain", "running athlete"],
+        "始め": ["starting line race", "first step door", "new beginning sunrise"],
+        "一歩": ["first step walking", "footprint sand", "door opening light"],
+        "お金": ["money coins gold", "piggy bank coins", "wallet cash payment"],
+        "貯金": ["piggy bank savings", "coins jar saving", "money growing plant"],
+        "投資": ["stock market chart", "trading screen data", "investment growth"],
+        "証券": ["stock exchange floor", "financial documents", "broker office"],
+        "口座": ["banking application", "smartphone finance app", "online banking"],
+        "NISA": ["japan finance tax", "savings account growth", "financial planning"],
+        "税金": ["tax documents calculator", "government building", "receipt payment"],
+        "利益": ["profit chart up", "success celebration", "growing graph"],
+        "損": ["loss red chart", "falling graph market", "risk warning sign"],
+        "暴落": ["stock crash red", "market panic sell", "financial crisis"],
+        "回復": ["recovery growth green", "phoenix rising", "spring flowers bloom"],
+        "バフェット": ["warren buffett wise", "old man thinking", "investment legend"],
+        "老後": ["retirement elderly couple", "senior relaxing", "pension life"],
+        "格差": ["inequality gap rich poor", "two paths diverge", "balance scale unfair"],
+        "自由": ["freedom nature open", "bird flying sky", "beach relaxation"],
+        "夢": ["dream clouds sky", "stars night wish", "imagination creative"],
+        "完璧": ["perfection imperfect", "puzzle missing piece", "good enough thumbs up"],
+        "大事": ["important key point", "spotlight focus", "heart hands care"],
+        "動": ["action movement start", "running shoes ready", "button press click"],
+        "申し込": ["application form sign", "click button screen", "registration online"],
+        "国": ["government policy japan", "national flag building", "public institution"],
+        "制度": ["system structure plan", "blueprint design", "organization chart"],
     }
 
-    best_query = "finance money"
-    for keyword, query in stock_keywords.items():
+    # Find all matching queries, pick one that hasn't been used recently
+    candidates = []
+    for keyword, queries in stock_keywords.items():
         if keyword in text:
-            best_query = query
-            break
+            candidates.extend(queries)
+
+    if not candidates:
+        candidates = ["finance money business", "economy global market", "modern city aerial"]
+
+    # Use line index to rotate through candidates
+    best_query = candidates[index % len(candidates)]
 
     # Extract key message (not full narration text)
     overlay_main = extract_key_message(text)

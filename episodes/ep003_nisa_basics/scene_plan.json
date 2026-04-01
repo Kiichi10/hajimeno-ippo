@@ -15,14 +15,14 @@
     },
     {
       "visual_type": "stock_overlay",
-      "stock_query": "stock market",
+      "stock_query": "trading screen data",
       "overlay_text": "税金ゼロの箱",
       "overlay_sub": "",
       "description": "ストック+テキスト: 実はNISAとは「税金がかからない投資の箱」だと思えばいい。",
       "line_index": 1,
       "line_text": "実はNISAとは「税金がかからない投資の箱」だと思えばいい。",
       "duration_sec": 5.27,
-      "stock_video": "assets/stock_cache/5180b07647d9_stock_market.mp4"
+      "stock_video": "assets/stock_cache/756c8fa1d940_0_trading_screen_data.mp4"
     },
     {
       "visual_type": "animated_panel",
@@ -56,25 +56,25 @@
     },
     {
       "visual_type": "stock_overlay",
-      "stock_query": "starting line",
+      "stock_query": "investment growth",
       "overlay_text": "国が用意した制度",
       "overlay_sub": "",
       "description": "ストック+テキスト: これは国が「投資を始めてほしい」と用意してくれた制度だ。使わ",
       "line_index": 5,
       "line_text": "これは国が「投資を始めてほしい」と用意してくれた制度だ。使わない理由がない。",
       "duration_sec": 6.6,
-      "stock_video": "assets/stock_cache/eea8e433906e_starting_line.mp4"
+      "stock_video": "assets/stock_cache/e8cff7631521_0_investment_growth.mp4"
     },
     {
       "visual_type": "stock_overlay",
-      "stock_query": "stock market",
+      "stock_query": "stock market chart",
       "overlay_text": "年360万円？関係ない",
       "overlay_sub": "",
       "description": "ストック+テキスト: 新NISAでは年間360万円まで投資できる。でもそんな大金は",
       "line_index": 6,
       "line_text": "新NISAでは年間360万円まで投資できる。でもそんな大金は必要ない。",
       "duration_sec": 7.14,
-      "stock_video": "assets/stock_cache/5180b07647d9_stock_market.mp4"
+      "stock_video": "assets/stock_cache/11264c80a1ff_0_stock_market_chart.mp4"
     },
     {
       "visual_type": "animated_panel",
@@ -88,36 +88,36 @@
     },
     {
       "visual_type": "stock_overlay",
-      "stock_query": "finance money",
+      "stock_query": "heart hands care",
       "overlay_text": "口座を開くだけ",
       "overlay_sub": "",
       "description": "ストック+テキスト: 大事なのは「NISA口座を開いた」という事実だ。",
       "line_index": 8,
       "line_text": "大事なのは「NISA口座を開いた」という事実だ。",
       "duration_sec": 4.34,
-      "stock_video": "assets/stock_cache/6a33a5adf059_finance_money.mp4"
+      "stock_video": "assets/stock_cache/8f6bfb21924a_0_heart_hands_care.mp4"
     },
     {
       "visual_type": "stock_overlay",
-      "stock_query": "stock exchange",
+      "stock_query": "stock exchange floor",
       "overlay_text": "どこで開く？",
       "overlay_sub": "",
       "description": "ストック+テキスト: 「でもどの証券会社がいいの？」と迷うだろう。",
       "line_index": 9,
       "line_text": "「でもどの証券会社がいいの？」と迷うだろう。",
       "duration_sec": 3.93,
-      "stock_video": "assets/stock_cache/00de7c5f8ff2_stock_exchange.mp4"
+      "stock_video": "assets/stock_cache/d4f531034143_0_stock_exchange_floor.mp4"
     },
     {
       "visual_type": "stock_overlay",
-      "stock_query": "stock exchange",
+      "stock_query": "financial documents",
       "overlay_text": "大手ならどこでもいい",
       "overlay_sub": "",
       "description": "ストック+テキスト: 正直、大手ならどこでもいい。SBI証券でも楽天証券でもいい。",
       "line_index": 10,
       "line_text": "正直、大手ならどこでもいい。SBI証券でも楽天証券でもいい。",
       "duration_sec": 5.69,
-      "stock_video": "assets/stock_cache/00de7c5f8ff2_stock_exchange.mp4"
+      "stock_video": "assets/stock_cache/bc29e8917128_0_financial_documents.mp4"
     },
     {
       "visual_type": "animated_panel",
@@ -131,25 +131,25 @@
     },
     {
       "visual_type": "stock_overlay",
-      "stock_query": "finance money",
+      "stock_query": "japan finance tax",
       "overlay_text": "知ってるのに動かない人",
       "overlay_sub": "",
       "description": "ストック+テキスト: NISAは「使わないと損」な制度。でも、多くの人が知りながら",
       "line_index": 12,
       "line_text": "NISAは「使わないと損」な制度。でも、多くの人が知りながら動いていない。",
       "duration_sec": 6.82,
-      "stock_video": "assets/stock_cache/6a33a5adf059_finance_money.mp4"
+      "stock_video": "assets/stock_cache/471ed1bb6c33_0_japan_finance_tax.mp4"
     },
     {
       "visual_type": "stock_overlay",
-      "stock_query": "finance money",
+      "stock_query": "running shoes ready",
       "overlay_text": "知った。あとは動くだけ",
       "overlay_sub": "",
       "description": "ストック+テキスト: あなたは、知った。あとは動くだけだ。",
       "line_index": 13,
       "line_text": "あなたは、知った。あとは動くだけだ。",
       "duration_sec": 4.01,
-      "stock_video": "assets/stock_cache/6a33a5adf059_finance_money.mp4"
+      "stock_video": "assets/stock_cache/e206ae2ed55e_0_running_shoes_ready.mp4"
     },
     {
       "visual_type": "animated_panel",

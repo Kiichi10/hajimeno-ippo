@@ -20,20 +20,25 @@ def load_config():
         return json.load(f)
 
 
+_used_videos = set()  # Track used videos within a session to avoid reuse
+
+
 def fetch_video(query: str, min_duration: int = 8) -> str | None:
     """
     Pixabay APIから動画を検索し、キャッシュディレクトリにダウンロードする。
-    キャッシュ済みの場合はパスを返す。
+    同セッション内で同じ動画が使われないようにトラッキングする。
     """
     config = load_config()
     cache_dir = PROJECT_ROOT / config["stock_video"]["cache_dir"]
     cache_dir.mkdir(parents=True, exist_ok=True)
 
-    # Check cache
+    # Check cache - but skip already-used videos
     cache_key = hashlib.md5(query.encode()).hexdigest()[:12]
     cached = list(cache_dir.glob(f"{cache_key}_*.mp4"))
-    if cached:
-        return str(cached[0])
+    for c in cached:
+        if str(c) not in _used_videos:
+            _used_videos.add(str(c))
+            return str(c)
 
     # Get API key from environment or .env
     api_key = os.environ.get("PIXABAY_API_KEY")
@@ -86,41 +91,43 @@ def fetch_video(query: str, min_duration: int = 8) -> str | None:
         print(f"[WARN] No results for query: {query}")
         return None
 
-    # Select best video (prefer longer duration)
-    best = None
-    for hit in hits:
-        dur = hit.get("duration", 0)
-        if dur >= min_duration:
-            best = hit
-            break
-    if best is None:
-        best = hits[0]
+    # Try each hit until we find one not already used
+    for hit_idx, hit in enumerate(hits):
+        vid_url = hit.get("videos", {}).get("medium", {}).get("url")
+        if not vid_url:
+            vid_url = hit.get("videos", {}).get("small", {}).get("url")
+        if not vid_url:
+            continue
 
-    vid_url = best.get("videos", {}).get("medium", {}).get("url")
-    if not vid_url:
-        vid_url = best.get("videos", {}).get("small", {}).get("url")
-    if not vid_url:
-        print("[WARN] No video URL found")
-        return None
+        safe_query = query.replace(" ", "_").replace("+", "_")[:20]
+        output_path = str(cache_dir / f"{cache_key}_{hit_idx}_{safe_query}.mp4")
 
-    # Download via curl (Pixabay CDN blocks urllib but allows curl)
-    safe_query = query.replace(" ", "_").replace("+", "_")[:20]
-    output_path = str(cache_dir / f"{cache_key}_{safe_query}.mp4")
+        # Skip if this specific file is already used
+        if output_path in _used_videos:
+            continue
 
-    r = subprocess.run(
-        ["curl", "-L", "-H", "Referer: https://pixabay.com/",
-         "-H", "User-Agent: Mozilla/5.0", "-o", output_path, vid_url],
-        capture_output=True, timeout=30
-    )
+        # If already cached, use it
+        if os.path.exists(output_path) and os.path.getsize(output_path) > 10000:
+            _used_videos.add(output_path)
+            return output_path
 
-    if r.returncode == 0 and os.path.exists(output_path) and os.path.getsize(output_path) > 10000:
-        print(f"  ✓ Downloaded: {output_path} ({os.path.getsize(output_path)/(1024*1024):.1f}MB)")
-        return output_path
-    else:
-        print(f"  ✗ Download failed for: {query}")
-        if os.path.exists(output_path):
-            os.remove(output_path)
-        return None
+        # Download
+        r = subprocess.run(
+            ["curl", "-L", "-H", "Referer: https://pixabay.com/",
+             "-H", "User-Agent: Mozilla/5.0", "-o", output_path, vid_url],
+            capture_output=True, timeout=30
+        )
+
+        if r.returncode == 0 and os.path.exists(output_path) and os.path.getsize(output_path) > 10000:
+            _used_videos.add(output_path)
+            print(f"  ✓ Downloaded: {output_path} ({os.path.getsize(output_path)/(1024*1024):.1f}MB)")
+            return output_path
+        else:
+            if os.path.exists(output_path):
+                os.remove(output_path)
+
+    print(f"  ✗ No usable video for: {query}")
+    return None
 
 
 def fetch_multiple(queries: list[str]) -> dict[str, str]:
