@@ -25,34 +25,37 @@
       "stock_video": "assets/stock_cache/756c8fa1d940_0_trading_screen_data.mp4"
     },
     {
-      "visual_type": "animated_panel",
-      "template": "templates/animated/bar_chart.html",
-      "description": "データパネル: 普通、投資で利益が出ると、約20%が税金として取られる。",
+      "visual_type": "stock_overlay",
+      "stock_query": "investment growth",
+      "overlay_text": "利益の20%が消える",
+      "overlay_sub": "",
+      "description": "ストック+テキスト: 普通、投資で利益が出ると、約20%が税金として取られる。",
       "line_index": 2,
       "line_text": "普通、投資で利益が出ると、約20%が税金として取られる。",
       "duration_sec": 5.87,
-      "overlay_text": "利益の20%が消える",
-      "overlay_sub": ""
+      "stock_video": "assets/stock_cache/e8cff7631521_0_investment_growth.mp4"
     },
     {
-      "visual_type": "animated_panel",
-      "template": "templates/animated/counter.html",
-      "description": "カウンター: 100万円儲かったら、20万円は国に持っていかれる計算だ。",
+      "visual_type": "stock_overlay",
+      "stock_query": "government policy japan",
+      "overlay_text": "100万円 → 手取り80万円",
+      "overlay_sub": "",
+      "description": "ストック+テキスト: 100万円儲かったら、20万円は国に持っていかれる計算だ。",
       "line_index": 3,
       "line_text": "100万円儲かったら、20万円は国に持っていかれる計算だ。",
       "duration_sec": 5.38,
-      "overlay_text": "100万円 → 手取り80万円",
-      "overlay_sub": ""
+      "stock_video": "assets/stock_cache/fff5a74e9bfd_0_government_policy_ja.mp4"
     },
     {
-      "visual_type": "animated_panel",
-      "template": "templates/animated/bar_chart.html",
-      "description": "データパネル: でもNISA口座で投資すれば、この20%がゼロになる。100",
+      "visual_type": "stock_overlay",
+      "stock_query": "smartphone finance app",
+      "overlay_text": "NISAなら100万円まるごと",
+      "overlay_sub": "",
+      "description": "ストック+テキスト: でもNISA口座で投資すれば、この20%がゼロになる。100",
       "line_index": 4,
       "line_text": "でもNISA口座で投資すれば、この20%がゼロになる。100万円儲かったら、100万円がそのまま手元に残る。",
       "duration_sec": 9.41,
-      "overlay_text": "NISAなら100万円まるごと",
-      "overlay_sub": ""
+      "stock_video": "assets/stock_cache/822ada7f283f_0_smartphone_finance_a.mp4"
     },
     {
       "visual_type": "stock_overlay",
@@ -63,7 +66,7 @@
       "line_index": 5,
       "line_text": "これは国が「投資を始めてほしい」と用意してくれた制度だ。使わない理由がない。",
       "duration_sec": 6.6,
-      "stock_video": "assets/stock_cache/e8cff7631521_0_investment_growth.mp4"
+      "stock_video": "assets/stock_cache/e8cff7631521_1_investment_growth.mp4"
     },
     {
       "visual_type": "stock_overlay",
@@ -77,14 +80,15 @@
       "stock_video": "assets/stock_cache/11264c80a1ff_0_stock_market_chart.mp4"
     },
     {
-      "visual_type": "animated_panel",
-      "template": "templates/animated/counter.html",
-      "description": "カウンター: 月1万円でいい。月5,000円でもいい。金額は関係ない。",
+      "visual_type": "stock_overlay",
+      "stock_query": "economy global market",
+      "overlay_text": "月5,000円でも始められる",
+      "overlay_sub": "",
+      "description": "ストック+テキスト: 月1万円でいい。月5,000円でもいい。金額は関係ない。",
       "line_index": 7,
       "line_text": "月1万円でいい。月5,000円でもいい。金額は関係ない。",
       "duration_sec": 5.32,
-      "overlay_text": "月5,000円でも始められる",
-      "overlay_sub": ""
+      "stock_video": "assets/stock_cache/a9553112eeee_0_economy_global_marke.mp4"
     },
     {
       "visual_type": "stock_overlay",
@@ -120,14 +124,15 @@
       "stock_video": "assets/stock_cache/bc29e8917128_0_financial_documents.mp4"
     },
     {
-      "visual_type": "animated_panel",
-      "template": "templates/animated/bar_chart.html",
-      "description": "データパネル: 完璧な選択を探すより、今日申し込む方が100倍大事だ。",
+      "visual_type": "stock_overlay",
+      "stock_query": "good enough thumbs up",
+      "overlay_text": "今日申し込む方が大事",
+      "overlay_sub": "",
+      "description": "ストック+テキスト: 完璧な選択を探すより、今日申し込む方が100倍大事だ。",
       "line_index": 11,
       "line_text": "完璧な選択を探すより、今日申し込む方が100倍大事だ。",
       "duration_sec": 5.27,
-      "overlay_text": "今日申し込む方が大事",
-      "overlay_sub": ""
+      "stock_video": "assets/stock_cache/95abfc37af33_0_good_enough_thumbs_u.mp4"
     },
     {
       "visual_type": "stock_overlay",

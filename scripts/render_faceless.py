@@ -192,6 +192,32 @@ def render_static_panel(image_path: str, output_mp4: str, duration_sec: float, c
     return r.returncode == 0
 
 
+# ── Template Parameter Substitution ───────────────────────────
+
+def _resolve_panel_html(template_path: str, params: dict, out_dir: Path, index: int) -> str:
+    """
+    テンプレートHTMLを読み、{{key}}をparamsで置換した一時HTMLを生成する。
+    テンプレート本体は変更しない。paramsがなければテンプレートをそのまま返す。
+    """
+    if not params:
+        return template_path
+
+    import re
+    with open(template_path) as f:
+        html = f.read()
+
+    for key, value in params.items():
+        html = html.replace("{{" + key + "}}", str(value))
+
+    # 未置換プレースホルダーを空文字に
+    html = re.sub(r'\{\{[a-zA-Z_0-9]+\}\}', '', html)
+
+    resolved_path = str(out_dir / f"panel_{index:03d}.html")
+    with open(resolved_path, "w") as f:
+        f.write(html)
+    return resolved_path
+
+
 # ── Overlay PNG Generation ────────────────────────────────────
 
 def generate_overlay_png(text_main: str, text_sub: str, output_png: str, config: dict):
@@ -416,6 +442,7 @@ def render(episode_dir: str, scene_plan_path: str = None):
 
         if vtype == "animated_panel":
             html_path = str(PROJECT_ROOT / scene["template"])
+            html_path = _resolve_panel_html(html_path, scene.get("params", {}), segments_dir, i)
             from html_to_video import capture_js_animation
             ok = capture_js_animation(
                 html_path, seg_path, duration,

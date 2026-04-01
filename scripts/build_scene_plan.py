@@ -65,32 +65,9 @@ def classify_line(text: str, index: int, total: int) -> dict:
             "description": "クロージング",
         }
 
-    # Lines with numbers/data → animated panel (chart)
-    has_numbers = any(c.isdigit() for c in text)
-    has_comparison = any(w in text for w in ["比べ", "差", "VS", "一方", "対し"])
-    has_percent = "%" in text or "パーセント" in text or "割" in text
-    has_growth = any(w in text for w in ["増え", "倍", "成長", "複利", "運用"])
-
-    if has_numbers and (has_percent or has_growth):
-        return {
-            "visual_type": "animated_panel",
-            "template": "templates/animated/bar_chart.html",
-            "description": f"データパネル: {text[:30]}",
-        }
-
-    if has_comparison and has_numbers:
-        return {
-            "visual_type": "animated_panel",
-            "template": "templates/animated/comparison.html",
-            "description": f"比較パネル: {text[:30]}",
-        }
-
-    if has_numbers and len(text) < 30:
-        return {
-            "visual_type": "animated_panel",
-            "template": "templates/animated/counter.html",
-            "description": f"カウンター: {text[:30]}",
-        }
+    # Data panels are only used when explicitly specified via [panel:type] tag in script
+    # Without explicit tag, lines with numbers default to stock_overlay
+    # This prevents mismatched hardcoded panel data
 
     # Lines with emotional/motivational content → stock video + overlay
     # Each keyword maps to multiple query candidates to avoid reuse
@@ -226,9 +203,31 @@ def build_plan(episode_dir: str) -> dict:
     with open(script_path) as f:
         raw_lines = [l.strip() for l in f.readlines() if l.strip()]
 
+    import re as _re
+
     lines = []
     key_messages = []
+    panel_overrides = []  # None or {"template": ..., "params": {...}}
+
     for raw in raw_lines:
+        # Check for [panel:type param=value ...] tag
+        panel_match = _re.search(r'\[panel:(\w+)((?:\s+\w+=(?:[^\]]+?))*)\]', raw)
+        if panel_match:
+            panel_type = panel_match.group(1)
+            param_str = panel_match.group(2).strip()
+            params = {}
+            if param_str:
+                for m in _re.finditer(r'(\w+)=("[^"]*"|[^\s\]]+)', param_str):
+                    params[m.group(1)] = m.group(2).strip('"')
+            panel_overrides.append({
+                "template": f"templates/animated/{panel_type}.html",
+                "params": params,
+            })
+            raw = raw[:panel_match.start()].strip()
+        else:
+            panel_overrides.append(None)
+
+        # Parse narration | key_message
         if " | " in raw:
             narration, key_msg = raw.split(" | ", 1)
             lines.append(narration.strip())
@@ -250,7 +249,17 @@ def build_plan(episode_dir: str) -> dict:
 
         duration = get_audio_duration(str(wav_path)) + gap
 
-        scene_info = classify_line(line_text, i, len(lines))
+        # Check for explicit panel override
+        if panel_overrides[i]:
+            scene_info = {
+                "visual_type": "animated_panel",
+                "template": panel_overrides[i]["template"],
+                "params": panel_overrides[i]["params"],
+                "description": f"パネル指定: {line_text[:30]}",
+            }
+        else:
+            scene_info = classify_line(line_text, i, len(lines))
+
         scene_info["line_index"] = i
         scene_info["line_text"] = line_text
         scene_info["duration_sec"] = round(duration, 2)
