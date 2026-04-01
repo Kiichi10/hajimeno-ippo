@@ -1,7 +1,7 @@
 {
   "episode_dir": "/Users/kiichi/Documents/VS Code/最初の一歩/episodes/ep003_nisa_basics",
   "total_scenes": 15,
-  "total_duration_sec": 87.11,
+  "total_duration_sec": 86.9,
   "scenes": [
     {
       "visual_type": "animated_panel",
@@ -9,7 +9,7 @@
       "description": "タイトルカード",
       "line_index": 0,
       "line_text": "NISAという言葉を聞いたことはあるけど、よくわからない。そんな人は多い。",
-      "duration_sec": 6.07,
+      "duration_sec": 5.94,
       "overlay_text": "NISAって何？",
       "overlay_sub": ""
     },
@@ -21,7 +21,7 @@
       "description": "ストック+テキスト: 実はNISAとは「税金がかからない投資の箱」だと思えばいい。",
       "line_index": 1,
       "line_text": "実はNISAとは「税金がかからない投資の箱」だと思えばいい。",
-      "duration_sec": 5.16,
+      "duration_sec": 5.25,
       "stock_video": "assets/stock_cache/756c8fa1d940_0_trading_screen_data.mp4"
     },
     {
@@ -32,7 +32,7 @@
       "description": "ストック+テキスト: 普通、投資で利益が出ると、約20%が税金として取られる。",
       "line_index": 2,
       "line_text": "普通、投資で利益が出ると、約20%が税金として取られる。",
-      "duration_sec": 5.63,
+      "duration_sec": 5.7,
       "stock_video": "assets/stock_cache/e8cff7631521_0_investment_growth.mp4"
     },
     {
@@ -52,7 +52,7 @@
       "description": "パネル指定: 100万円儲かったら、20万円は国に持っていかれる計算だ。",
       "line_index": 3,
       "line_text": "100万円儲かったら、20万円は国に持っていかれる計算だ。",
-      "duration_sec": 5.42,
+      "duration_sec": 5.34,
       "overlay_text": "100万円 → 手取り80万円",
       "overlay_sub": ""
     },
@@ -64,7 +64,7 @@
       "description": "ストック+テキスト: でもNISA口座で投資すれば、この20%がゼロになる。100",
       "line_index": 4,
       "line_text": "でもNISA口座で投資すれば、この20%がゼロになる。100万円儲かったら、100万円がそのまま手元に残る。",
-      "duration_sec": 9.35,
+      "duration_sec": 9.33,
       "stock_video": "assets/stock_cache/822ada7f283f_0_smartphone_finance_a.mp4"
     },
     {
@@ -75,7 +75,7 @@
       "description": "ストック+テキスト: これは国が「投資を始めてほしい」と用意してくれた制度だ。使わ",
       "line_index": 5,
       "line_text": "これは国が「投資を始めてほしい」と用意してくれた制度だ。使わない理由がない。",
-      "duration_sec": 6.83,
+      "duration_sec": 6.62,
       "stock_video": "assets/stock_cache/e8cff7631521_1_investment_growth.mp4"
     },
     {
@@ -86,7 +86,7 @@
       "description": "ストック+テキスト: 新NISAでは年間360万円まで投資できる。でもそんな大金は",
       "line_index": 6,
       "line_text": "新NISAでは年間360万円まで投資できる。でもそんな大金は必要ない。",
-      "duration_sec": 6.96,
+      "duration_sec": 6.98,
       "stock_video": "assets/stock_cache/11264c80a1ff_0_stock_market_chart.mp4"
     },
     {
@@ -97,7 +97,7 @@
       "description": "ストック+テキスト: 月1万円でいい。月5,000円でもいい。金額は関係ない。",
       "line_index": 7,
       "line_text": "月1万円でいい。月5,000円でもいい。金額は関係ない。",
-      "duration_sec": 5.56,
+      "duration_sec": 5.48,
       "stock_video": "assets/stock_cache/a9553112eeee_0_economy_global_marke.mp4"
     },
     {
@@ -108,7 +108,7 @@
       "description": "ストック+テキスト: 大事なのは「NISA口座を開いた」という事実だ。",
       "line_index": 8,
       "line_text": "大事なのは「NISA口座を開いた」という事実だ。",
-      "duration_sec": 4.34,
+      "duration_sec": 4.29,
       "stock_video": "assets/stock_cache/8f6bfb21924a_0_heart_hands_care.mp4"
     },
     {
@@ -119,7 +119,7 @@
       "description": "ストック+テキスト: 「でもどの証券会社がいいの？」と迷うだろう。",
       "line_index": 9,
       "line_text": "「でもどの証券会社がいいの？」と迷うだろう。",
-      "duration_sec": 3.97,
+      "duration_sec": 3.9,
       "stock_video": "assets/stock_cache/d4f531034143_0_stock_exchange_floor.mp4"
     },
     {
@@ -130,7 +130,7 @@
       "description": "ストック+テキスト: 正直、大手ならどこでもいい。SBI証券でも楽天証券でもいい。",
       "line_index": 10,
       "line_text": "正直、大手ならどこでもいい。SBI証券でも楽天証券でもいい。",
-      "duration_sec": 5.67,
+      "duration_sec": 5.7,
       "stock_video": "assets/stock_cache/bc29e8917128_0_financial_documents.mp4"
     },
     {
@@ -141,7 +141,7 @@
       "description": "ストック+テキスト: 完璧な選択を探すより、今日申し込む方が100倍大事だ。",
       "line_index": 11,
       "line_text": "完璧な選択を探すより、今日申し込む方が100倍大事だ。",
-      "duration_sec": 5.28,
+      "duration_sec": 5.32,
       "stock_video": "assets/stock_cache/95abfc37af33_0_good_enough_thumbs_u.mp4"
     },
     {
@@ -152,7 +152,7 @@
       "description": "ストック+テキスト: NISAは「使わないと損」な制度。でも、多くの人が知りながら",
       "line_index": 12,
       "line_text": "NISAは「使わないと損」な制度。でも、多くの人が知りながら動いていない。",
-      "duration_sec": 6.88,
+      "duration_sec": 6.76,
       "stock_video": "assets/stock_cache/471ed1bb6c33_0_japan_finance_tax.mp4"
     },
     {
@@ -163,7 +163,7 @@
       "description": "ストック+テキスト: あなたは、知った。あとは動くだけだ。",
       "line_index": 13,
       "line_text": "あなたは、知った。あとは動くだけだ。",
-      "duration_sec": 4.11,
+      "duration_sec": 4.12,
       "stock_video": "assets/stock_cache/e206ae2ed55e_0_running_shoes_ready.mp4"
     },
     {
@@ -172,7 +172,7 @@
       "description": "クロージング",
       "line_index": 14,
       "line_text": "最初の一歩は、証券口座の申し込みボタンを押すこと。それだけでいい。",
-      "duration_sec": 5.88,
+      "duration_sec": 6.17,
       "overlay_text": "ボタンを押すだけ",
       "overlay_sub": ""
     }
