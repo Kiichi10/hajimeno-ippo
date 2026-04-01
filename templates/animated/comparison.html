@@ -6,7 +6,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   width: 1920px; height: 1080px; background: #0a0a1a;
-  font-family: 'YuGothic', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', sans-serif;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
@@ -38,12 +38,12 @@ body {
 .person:nth-child(1) .amount-bar {
   background: linear-gradient(180deg, #ffd700, #ff8c00);
   animation: growBar 1.5s ease-out 1.5s forwards;
-  --target-height: {{left_bar_height}}px;
+  --target-height: 400px;
 }
 .person:nth-child(3) .amount-bar {
   background: linear-gradient(180deg, #555, #333);
   animation: growBar 1.5s ease-out 2.0s forwards;
-  --target-height: {{right_bar_height}}px;
+  --target-height: 200px;
 }
 
 .amount {
@@ -64,6 +64,7 @@ body {
   padding: 30px 60px; border: 2px solid #ff4444; border-radius: 16px;
   background: rgba(255,68,68,0.1);
   opacity: 0; animation: fadeIn 0.8s ease-out 4.0s forwards;
+  transform-origin: center;
 }
 .gap-number { font-size: 64px; font-weight: 900; color: #ff4444; }
 .gap-label { font-size: 26px; color: #aaaacc; margin-top: 10px; }
@@ -80,23 +81,23 @@ body {
 </head>
 <body>
 <div class="container">
-  <div class="title">{{comp_title}}</div>
+  <div class="title">開始が<span class="highlight">10年遅れる</span>だけで</div>
   <div class="comparison">
     <div class="person">
-      <div class="person-label">{{left_label}}</div>
-      <div class="age">{{left_sub}}</div>
-      <div class="amount-bar"><div class="amount">{{left_amount}}</div></div>
+      <div class="person-label">30歳で開始</div>
+      <div class="age">→ 60歳時点</div>
+      <div class="amount-bar"><div class="amount">2,280万</div></div>
     </div>
     <div class="vs">VS</div>
     <div class="person">
-      <div class="person-label">{{right_label}}</div>
-      <div class="age">{{right_sub}}</div>
-      <div class="amount-bar"><div class="amount">{{right_amount}}</div></div>
+      <div class="person-label">40歳で開始</div>
+      <div class="age">→ 60歳時点</div>
+      <div class="amount-bar"><div class="amount">1,160万</div></div>
     </div>
   </div>
   <div class="gap-box">
-    <div class="gap-number">{{gap_amount}}</div>
-    <div class="gap-label">{{gap_label}}</div>
+    <div class="gap-number">−1,120万円</div>
+    <div class="gap-label">努力では埋められない、時間だけが生む不可逆の格差</div>
   </div>
 </div>
 </body>

@@ -51,19 +51,10 @@ def classify_line(text: str, index: int, total: int) -> dict:
     """
     # First line = title card
     if index == 0:
-        # Split text for title: first sentence → line1, rest → line2
-        parts = text.split("。", 1)
-        line1 = parts[0] if parts else text
-        line2 = parts[1].lstrip("。").strip() if len(parts) > 1 and parts[1].strip() else ""
         return {
             "visual_type": "animated_panel",
             "template": "templates/animated/title_card.html",
             "description": "タイトルカード",
-            "params": {
-                "title_line1": line1,
-                "title_line2": line2,
-                "subtitle": "最初の一歩 — 動けなかったあなたへ",
-            },
         }
 
     # Last line = closing
@@ -72,12 +63,6 @@ def classify_line(text: str, index: int, total: int) -> dict:
             "visual_type": "animated_panel",
             "template": "templates/animated/closing.html",
             "description": "クロージング",
-            "params": {
-                "closing_line1": text.split("。")[0] if "。" in text else text,
-                "closing_line2": "",
-                "closing_line3": "",
-                "closing_cta": "最初の一歩を、今日踏み出そう。",
-            },
         }
 
     # Lines with numbers/data → animated panel (chart)

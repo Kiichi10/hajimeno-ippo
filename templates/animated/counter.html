@@ -6,7 +6,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   width: 1920px; height: 1080px; background: #0a0a1a;
-  font-family: 'YuGothic', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', sans-serif;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
@@ -35,15 +35,16 @@ body {
 </head>
 <body>
 <div class="container">
-  <div class="label" id="label">{{counter_label}}</div>
-  <div class="number"><span id="counter">0</span><span class="unit" id="unit">{{counter_unit}}</span></div>
-  <div class="sub" id="sub">{{counter_sub}}</div>
+  <div class="label" id="label">30年後の資産額</div>
+  <div class="number"><span id="counter">0</span><span class="unit" id="unit">万円</span></div>
+  <div class="sub" id="sub">元本300万円 → 年利7%複利</div>
 </div>
 
 <script>
-const target = {{counter_target}};
-const duration = 3000;
-const startTime = performance.now() + 1000;
+// Counter animation
+const target = 2280;
+const duration = 3000; // ms
+const startTime = performance.now() + 1000; // 1s delay
 
 function easeOutExpo(t) {
   return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);

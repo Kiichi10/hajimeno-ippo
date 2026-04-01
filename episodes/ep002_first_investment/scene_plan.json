@@ -7,11 +7,6 @@
       "visual_type": "animated_panel",
       "template": "templates/animated/title_card.html",
       "description": "タイトルカード",
-      "params": {
-        "title_line1": "投資を始めたいけど、怖くて動けない",
-        "title_line2": "そんなあなたに、今日は1つだけ伝えたいことがある。",
-        "subtitle": "最初の一歩 — 動けなかったあなたへ"
-      },
       "line_index": 0,
       "line_text": "投資を始めたいけど、怖くて動けない。そんなあなたに、今日は1つだけ伝えたいことがある。",
       "duration_sec": 7.28,
@@ -164,12 +159,6 @@
       "visual_type": "animated_panel",
       "template": "templates/animated/closing.html",
       "description": "クロージング",
-      "params": {
-        "closing_line1": "あなたの未来は、今日のあなたが決める",
-        "closing_line2": "",
-        "closing_line3": "",
-        "closing_cta": "最初の一歩を、今日踏み出そう。"
-      },
       "line_index": 14,
       "line_text": "あなたの未来は、今日のあなたが決める。",
       "duration_sec": 3.97,

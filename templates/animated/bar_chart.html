@@ -7,7 +7,7 @@
 body {
   width: 1920px; height: 1080px;
   background: #0a0a1a;
-  font-family: 'YuGothic', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', sans-serif;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
@@ -37,27 +37,28 @@ body {
   width: 140px; border-radius: 10px 10px 0 0;
   position: relative;
   height: 0;
+  /* Each bar animates to its target height */
 }
 
 .bar-group:nth-child(1) .bar {
   background: linear-gradient(180deg, #ffd700, #ff8c00);
   animation: growBar 1.2s ease-out 1.0s forwards;
-  --target-height: {{bar1_height}}px;
+  --target-height: 80px;
 }
 .bar-group:nth-child(2) .bar {
   background: linear-gradient(180deg, #ffd700, #ff8c00);
   animation: growBar 1.2s ease-out 1.8s forwards;
-  --target-height: {{bar2_height}}px;
+  --target-height: 170px;
 }
 .bar-group:nth-child(3) .bar {
   background: linear-gradient(180deg, #ffd700, #e67e00);
   animation: growBar 1.2s ease-out 2.6s forwards;
-  --target-height: {{bar3_height}}px;
+  --target-height: 320px;
 }
 .bar-group:nth-child(4) .bar {
   background: linear-gradient(180deg, #ff4444, #cc0000);
   animation: growBar 1.4s ease-out 3.4s forwards;
-  --target-height: {{bar4_height}}px;
+  --target-height: 480px;
 }
 
 @keyframes growBar {
@@ -105,27 +106,27 @@ body {
 </head>
 <body>
 <div class="container">
-  <div class="title">{{chart_title}}</div>
+  <div class="title">300万円を<span class="highlight">年利7%</span>で運用した場合</div>
   <div class="chart">
     <div class="bar-group" style="left: 120px;">
-      <div class="bar"><div class="bar-label">{{bar1_label}}</div></div>
-      <div class="year-label">{{bar1_year}}</div>
-      <div class="multiplier">{{bar1_mult}}</div>
+      <div class="bar"><div class="bar-label">300万</div></div>
+      <div class="year-label">開始</div>
+      <div class="multiplier">×1.0</div>
     </div>
     <div class="bar-group" style="left: 380px;">
-      <div class="bar"><div class="bar-label">{{bar2_label}}</div></div>
-      <div class="year-label">{{bar2_year}}</div>
-      <div class="multiplier">{{bar2_mult}}</div>
+      <div class="bar"><div class="bar-label">590万</div></div>
+      <div class="year-label">10年後</div>
+      <div class="multiplier">×2.0</div>
     </div>
     <div class="bar-group" style="left: 640px;">
-      <div class="bar"><div class="bar-label">{{bar3_label}}</div></div>
-      <div class="year-label">{{bar3_year}}</div>
-      <div class="multiplier">{{bar3_mult}}</div>
+      <div class="bar"><div class="bar-label">1,160万</div></div>
+      <div class="year-label">20年後</div>
+      <div class="multiplier">×3.9</div>
     </div>
     <div class="bar-group" style="left: 900px;">
-      <div class="bar"><div class="bar-label">{{bar4_label}}</div></div>
-      <div class="year-label">{{bar4_year}}</div>
-      <div class="multiplier">{{bar4_mult}}</div>
+      <div class="bar"><div class="bar-label">2,280万</div></div>
+      <div class="year-label">30年後</div>
+      <div class="multiplier">×7.6</div>
     </div>
   </div>
 </div>
