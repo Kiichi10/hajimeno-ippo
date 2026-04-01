@@ -416,13 +416,16 @@ def render(episode_dir: str, scene_plan_path: str = None):
 
         if vtype == "animated_panel":
             html_path = str(PROJECT_ROOT / scene["template"])
-            ok = record_animated_panel(html_path, seg_path, duration, config)
-            if not ok:
-                print(f"    → Falling back to frame capture...")
-                ok = record_animated_panel_frames(html_path, seg_path, duration, config)
+            from html_to_video import capture_js_animation
+            ok = capture_js_animation(
+                html_path, seg_path, duration,
+                fps=config["video"]["fps"],
+                width=config["video"]["width"],
+                height=config["video"]["height"],
+                crf=config["video"]["crf"],
+            )
             if not ok:
                 print(f"    → Falling back to static panel...")
-                # Render static screenshot as fallback
                 png_path = seg_path.replace(".mp4", ".png")
                 subprocess.run([
                     sys.executable, "-c",
