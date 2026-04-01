@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1920px; height: 1080px; background: #0a0a1a;
+  font-family: 'YuGothic', 'Yu Gothic', 'Noto Sans JP', sans-serif; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.container { text-align: center; }
+.main-text { font-size: 56px; color: #fff; font-weight: 900; line-height: 1.7; letter-spacing: 2px; }
+.main-text .line { display: block; opacity: 0; }
+.main-text .line:nth-child(1) { animation: fadeUp 0.8s ease-out 0.5s forwards; }
+.main-text .line:nth-child(2) { animation: fadeUp 0.8s ease-out 1.3s forwards; }
+.gold { color: #ffd700; font-size: 60px; }
+.divider { width: 300px; height: 2px; background: linear-gradient(90deg, transparent, #ffd700, transparent);
+  margin: 40px auto; opacity: 0; animation: fadeUp 0.8s ease-out 2.5s forwards; }
+.cta { font-size: 28px; color: #aaaacc; line-height: 1.8; opacity: 0; animation: fadeUp 0.8s ease-out 3.0s forwards; }
+.channel { font-size: 22px; color: #666; margin-top: 30px; opacity: 0; animation: fadeUp 0.8s ease-out 3.5s forwards; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+</style></head><body>
+<div class="container">
+  <div class="main-text">
+    <span class="line">最初の一歩は、証券口座の申し込みボタンを押すこと</span>
+    <span class="line"><span class="gold">それだけでいい</span></span>
+  </div>
+  <div class="divider"></div>
+  <div class="cta">最初の一歩を、今日踏み出そう。</div>
+  <div class="channel">最初の一歩 — 動けなかったあなたへ</div>
+</div></body></html>

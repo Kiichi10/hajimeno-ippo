@@ -25,6 +25,7 @@ PROJECT_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
 from generate_audio import generate as generate_audio
+from generate_panels import generate as generate_panels
 from build_scene_plan import build_plan
 from fetch_stock_video import fetch_video
 from render_faceless import render
@@ -55,13 +56,25 @@ def run_pipeline(episode_id: str, skip_audio: bool = False, skip_stock: bool = F
     else:
         print(f"\n▶ Phase 1: Audio Generation [SKIPPED]")
 
-    # ── Phase 2: Scene Plan ──
-    print(f"\n▶ Phase 2: Scene Plan Generation")
+    # ── Phase 2: Panel Generation ──
+    print(f"\n▶ Phase 2: Panel Generation")
+    panels = generate_panels(str(episode_dir))
+
+    # ── Phase 3: Scene Plan ──
+    print(f"\n▶ Phase 3: Scene Plan Generation")
     plan = build_plan(str(episode_dir))
 
-    # ── Phase 3: Stock Video Fetch ──
+    # Apply generated panel paths to scene plan
+    panel_map = {p["scene_index"]: p["panel_path"] for p in panels}
+    for scene in plan["scenes"]:
+        idx = scene["line_index"]
+        if idx in panel_map:
+            scene["visual_type"] = "animated_panel"
+            scene["template"] = os.path.relpath(panel_map[idx], PROJECT_ROOT)
+
+    # ── Phase 4: Stock Video Fetch ──
     if not skip_stock:
-        print(f"\n▶ Phase 3: Stock Video Fetch")
+        print(f"\n▶ Phase 4: Stock Video Fetch")
         stock_dir = episode_dir / "stock"
         stock_dir.mkdir(exist_ok=True)
 
@@ -88,10 +101,10 @@ def run_pipeline(episode_id: str, skip_audio: bool = False, skip_stock: bool = F
             json.dump(plan, f, ensure_ascii=False, indent=2)
         print(f"  Updated: {plan_path}")
     else:
-        print(f"\n▶ Phase 3: Stock Video Fetch [SKIPPED]")
+        print(f"\n▶ Phase 4: Stock Video Fetch [SKIPPED]")
 
-    # ── Phase 4: Render ──
-    print(f"\n▶ Phase 4: Video Rendering")
+    # ── Phase 5: Render ──
+    print(f"\n▶ Phase 5: Video Rendering")
     result = render(str(episode_dir))
 
     # ── Summary ──
