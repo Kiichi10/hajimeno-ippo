@@ -37,7 +37,9 @@ def generate(episode_dir: str):
         return False
 
     with open(script_path) as f:
-        lines = [l.strip() for l in f.readlines() if l.strip()]
+        raw_lines = [l.strip() for l in f.readlines() if l.strip()]
+    # Extract narration only (before | separator)
+    lines = [l.split(" | ")[0].strip() for l in raw_lines]
 
     audio_dir = episode_dir / "audio"
     audio_dir.mkdir(parents=True, exist_ok=True)

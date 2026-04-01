@@ -56,14 +56,17 @@
   },
 
   "bgm": {
-    "default": "assets/bgm/lo-fi-ambient.mp3",
+    "default": "assets/bgm/bgm_hope.mp3",
     "volume": 0.08
   },
 
   "se": {
-    "transition_whoosh": "assets/se/whoosh.mp3",
-    "number_reveal": "assets/se/chime.mp3",
-    "section_change": "assets/se/soft_impact.mp3"
+    "transition": "assets/se/transition_light.mp3",
+    "reveal": "assets/se/reveal.mp3",
+    "emphasis": "assets/se/emphasis_heavy1.mp3",
+    "decision": "assets/se/decision.mp3",
+    "dramatic": "assets/se/dramatic_hit.mp3",
+    "volume": 0.4
   },
 
   "youtube": {

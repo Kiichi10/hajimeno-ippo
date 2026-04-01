@@ -232,25 +232,135 @@ asyncio.run(main())
 
 # ── Final Composition ─────────────────────────────────────────
 
+def build_se_track(scenes: list, total_duration: float, config: dict, output_wav: str):
+    """
+    シーン切り替えポイントにSEを配置した音声トラックを生成する。
+    タイトル→本編: dramatic, パネル切替: reveal, ストック切替: transition
+    """
+    se_config = config.get("se", {})
+    se_volume = se_config.get("volume", 0.3)
+
+    # SE file mapping by transition type
+    se_map = {
+        "title_to_content": se_config.get("dramatic", ""),
+        "to_panel": se_config.get("reveal", ""),
+        "to_stock": se_config.get("transition", ""),
+        "closing": se_config.get("decision", ""),
+    }
+
+    # Resolve paths and filter existing
+    se_events = []  # [(time_sec, se_file)]
+    current_time = 0.0
+
+    for i, scene in enumerate(scenes):
+        if i == 0:
+            current_time += scene["duration_sec"]
+            continue
+
+        # Determine SE type based on transition
+        prev_type = scenes[i - 1]["visual_type"]
+        curr_type = scene["visual_type"]
+
+        if i == 1:
+            se_type = "title_to_content"
+        elif i == len(scenes) - 1:
+            se_type = "closing"
+        elif curr_type == "animated_panel":
+            se_type = "to_panel"
+        else:
+            se_type = "to_stock"
+
+        se_file = se_map.get(se_type, "")
+        if se_file:
+            se_path = str(PROJECT_ROOT / se_file)
+            if os.path.exists(se_path):
+                se_events.append((current_time, se_path))
+
+        current_time += scene["duration_sec"]
+
+    if not se_events:
+        return None
+
+    # Build ffmpeg command to mix all SEs into a single track
+    inputs = []
+    filter_parts = []
+
+    for idx, (t, path) in enumerate(se_events):
+        inputs.extend(["-i", path])
+        filter_parts.append(
+            f"[{idx}:a]adelay={int(t * 1000)}|{int(t * 1000)},"
+            f"volume={se_volume},aformat=sample_rates=44100:channel_layouts=stereo[se{idx}]"
+        )
+
+    mix_inputs = "".join(f"[se{i}]" for i in range(len(se_events)))
+    filter_parts.append(
+        f"{mix_inputs}amix=inputs={len(se_events)}:duration=longest,"
+        f"atrim=0:{total_duration:.2f}[seout]"
+    )
+
+    cmd = [
+        "ffmpeg", "-y",
+        *inputs,
+        "-filter_complex", ";".join(filter_parts),
+        "-map", "[seout]",
+        "-c:a", "pcm_s16le", "-ar", "44100",
+        output_wav
+    ]
+
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+    if r.returncode == 0:
+        return output_wav
+    else:
+        print(f"  [WARN] SE track generation failed: {r.stderr[-200:]}")
+        return None
+
+
 def concat_segments(segment_files: list, audio_path: str, output_mp4: str,
-                    bgm_path: str = None, bgm_volume: float = 0.08):
-    """全セグメントを結合し、音声+BGMを合成"""
+                    bgm_path: str = None, bgm_volume: float = 0.06,
+                    se_track_path: str = None):
+    """全セグメントを結合し、音声+BGM+SEを合成"""
     with tempfile.NamedTemporaryFile(mode="w", suffix=".txt", delete=False) as f:
         for seg in segment_files:
             f.write(f"file '{seg}'\n")
         list_path = f.name
 
+    # Count audio inputs and build filter
+    audio_inputs = ["-i", audio_path]  # index 1
+    filter_streams = ["[1:a]aformat=sample_rates=44100:channel_layouts=stereo[voice]"]
+    mix_inputs = "[voice]"
+    mix_count = 1
+    next_idx = 2
+
     if bgm_path and os.path.exists(bgm_path):
-        # Audio + BGM mix
+        audio_inputs.extend(["-i", bgm_path])  # index 2
+        filter_streams.append(
+            f"[{next_idx}:a]aformat=sample_rates=44100:channel_layouts=stereo,"
+            f"volume={bgm_volume}[bgm]"
+        )
+        mix_inputs += "[bgm]"
+        mix_count += 1
+        next_idx += 1
+
+    if se_track_path and os.path.exists(se_track_path):
+        audio_inputs.extend(["-i", se_track_path])
+        filter_streams.append(
+            f"[{next_idx}:a]aformat=sample_rates=44100:channel_layouts=stereo[se]"
+        )
+        mix_inputs += "[se]"
+        mix_count += 1
+        next_idx += 1
+
+    if mix_count > 1:
+        filter_streams.append(
+            f"{mix_inputs}amix=inputs={mix_count}:duration=shortest:normalize=0[aout]"
+        )
+        filter_complex = ";".join(filter_streams)
+
         cmd = [
             "ffmpeg", "-y",
             "-f", "concat", "-safe", "0", "-i", list_path,
-            "-i", audio_path,
-            "-i", bgm_path,
-            "-filter_complex",
-            f"[1:a]aformat=sample_rates=44100:channel_layouts=mono[voice];"
-            f"[2:a]aformat=sample_rates=44100:channel_layouts=mono,volume={bgm_volume}[bgm];"
-            f"[voice][bgm]amix=inputs=2:duration=shortest[aout]",
+            *audio_inputs,
+            "-filter_complex", filter_complex,
             "-map", "0:v", "-map", "[aout]",
             "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
             "-shortest", output_mp4
@@ -259,7 +369,7 @@ def concat_segments(segment_files: list, audio_path: str, output_mp4: str,
         cmd = [
             "ffmpeg", "-y",
             "-f", "concat", "-safe", "0", "-i", list_path,
-            "-i", audio_path,
+            *audio_inputs,
             "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
             "-shortest", output_mp4
         ]
@@ -358,8 +468,19 @@ with sync_playwright() as p:
         else:
             print(f"    ✗ Failed to create segment")
 
+    # ── SE Track ──
+    total_duration = sum(s["duration_sec"] for s in plan["scenes"])
+    se_track_path = str(segments_dir / "se_track.wav")
+    print(f"\nGenerating SE track...")
+    se_result = build_se_track(plan["scenes"], total_duration, config, se_track_path)
+    if se_result:
+        print(f"  ✓ SE track: {se_track_path}")
+    else:
+        print(f"  (no SE)")
+        se_track_path = None
+
     # ── Final composition ──
-    print(f"\nCompositing {len(segment_files)} segments...")
+    print(f"\nCompositing {len(segment_files)} segments + BGM + SE...")
     final_path = str(output_dir / "final.mp4")
 
     bgm_path = config.get("bgm", {}).get("default")
@@ -369,7 +490,8 @@ with sync_playwright() as p:
     ok = concat_segments(
         segment_files, audio_path, final_path,
         bgm_path=bgm_path,
-        bgm_volume=config.get("bgm", {}).get("volume", 0.08)
+        bgm_volume=config.get("bgm", {}).get("volume", 0.06),
+        se_track_path=se_track_path
     )
 
     if ok:

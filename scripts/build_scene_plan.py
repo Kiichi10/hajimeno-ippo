@@ -119,38 +119,101 @@ def classify_line(text: str, index: int, total: int) -> dict:
             best_query = query
             break
 
-    # Split long text for overlay
-    if len(text) > 25:
-        mid = len(text) // 2
-        # Find a natural break point near the middle
-        for char in ["。", "、", "が", "は", "を", "に", "で", "と"]:
-            pos = text.find(char, mid - 10, mid + 10)
-            if pos > 0:
-                mid = pos + 1
-                break
-        overlay_main = text[:mid]
-        overlay_sub = text[mid:]
-    else:
-        overlay_main = text
-        overlay_sub = ""
+    # Extract key message (not full narration text)
+    overlay_main = extract_key_message(text)
 
     return {
         "visual_type": "stock_overlay",
         "stock_query": best_query,
         "overlay_text": overlay_main,
-        "overlay_sub": overlay_sub,
+        "overlay_sub": "",
         "description": f"ストック+テキスト: {text[:30]}",
     }
+
+
+def extract_key_message(text: str) -> str:
+    """
+    ナレーション全文からキーメッセージだけを抽出する。
+    字幕ではなく、その場面のテーマを短く表現する。
+
+    例:
+      "学校では教わらない。親も教えてくれない。だから「わからない」のは当たり前だ。"
+      → "誰も教えてくれなかった"
+
+      "過去100年間、世界経済は何度も暴落した。でも、一度も回復しなかったことはない。"
+      → "暴落しても、必ず回復する"
+    """
+    # カギ括弧の中身があればそれがキーメッセージ
+    import re
+    quoted = re.findall(r'「(.+?)」', text)
+    if quoted:
+        # 最も長いカギ括弧内容を使う
+        best = max(quoted, key=len)
+        if len(best) <= 20:
+            return best
+
+    # 句点で分割して最も短い文（＝要点）を取る
+    sentences = [s.strip() for s in text.replace("。", "。\n").split("\n") if s.strip()]
+
+    if len(sentences) == 1:
+        # 一文だけなら20文字に切り詰め
+        s = sentences[0].rstrip("。")
+        if len(s) > 20:
+            # 最後の句読点まで
+            for sep in ["。", "、"]:
+                idx = s.rfind(sep, 0, 20)
+                if idx > 0:
+                    return s[:idx]
+            return s[:20]
+        return s
+
+    # 複数文: 最も「結論的」な文を選ぶ
+    # 「〜だ」「〜ある」「〜ない」で終わる短い文を優先
+    candidates = []
+    for s in sentences:
+        s = s.rstrip("。")
+        if not s:
+            continue
+        score = 0
+        if len(s) <= 20:
+            score += 3
+        elif len(s) <= 30:
+            score += 1
+        # 結論的な語尾
+        if s.endswith(("だ", "ある", "ない", "いい", "いる")):
+            score += 2
+        # 否定は強い
+        if "ない" in s:
+            score += 1
+        candidates.append((score, s))
+
+    candidates.sort(key=lambda x: -x[0])
+    best = candidates[0][1] if candidates else sentences[-1].rstrip("。")
+
+    if len(best) > 25:
+        best = best[:25]
+    return best
 
 
 def build_plan(episode_dir: str) -> dict:
     episode_dir = Path(episode_dir)
     config = load_config()
 
-    # Read script
+    # Read script — format: "ナレーション | キーメッセージ" or "ナレーション" (no key msg)
     script_path = episode_dir / "script.txt"
     with open(script_path) as f:
-        lines = [l.strip() for l in f.readlines() if l.strip()]
+        raw_lines = [l.strip() for l in f.readlines() if l.strip()]
+
+    lines = []
+    key_messages = []
+    for raw in raw_lines:
+        if " | " in raw:
+            narration, key_msg = raw.split(" | ", 1)
+            lines.append(narration.strip())
+            key_messages.append(key_msg.strip())
+        else:
+            lines.append(raw)
+            key_messages.append(None)
 
     # Get audio durations
     audio_dir = episode_dir / "audio"
@@ -169,6 +232,11 @@ def build_plan(episode_dir: str) -> dict:
         scene_info["line_index"] = i
         scene_info["line_text"] = line_text
         scene_info["duration_sec"] = round(duration, 2)
+
+        # Apply manually written key message if available
+        if key_messages[i]:
+            scene_info["overlay_text"] = key_messages[i]
+            scene_info["overlay_sub"] = ""
 
         scenes.append(scene_info)
 
