@@ -6,7 +6,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   width: 1920px; height: 1080px; background: #0a0a1a;
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', sans-serif;
+  font-family: 'YuGothic', 'Yu Gothic', 'Noto Sans JP', sans-serif;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
@@ -51,15 +51,12 @@ body {
 <body>
 <div class="container">
   <div class="main-text">
-    <span class="line">複利とは</span>
-    <span class="line"><span class="gold">待てる人間だけが手にする</span></span>
-    <span class="line">静かな暴力である</span>
+    <span class="line">{{closing_line1}}</span>
+    <span class="line"><span class="gold">{{closing_line2}}</span></span>
+    <span class="line">{{closing_line3}}</span>
   </div>
   <div class="divider"></div>
-  <div class="cta">
-    時間は買えない。だから今日始める。<br>
-    まずは証券口座を開く。それだけでいい。
-  </div>
+  <div class="cta">{{closing_cta}}</div>
   <div class="channel-name">最初の一歩 — 動けなかったあなたへ</div>
 </div>
 </body>

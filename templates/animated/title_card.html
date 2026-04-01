@@ -6,13 +6,12 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   width: 1920px; height: 1080px; background: #0a0a1a;
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', sans-serif;
+  font-family: 'YuGothic', 'Yu Gothic', 'Noto Sans JP', sans-serif;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
 .container { text-align: center; position: relative; }
 
-/* Animated background rings */
 .ring {
   position: absolute; border-radius: 50%;
   border: 1px solid rgba(255,215,0,0.08);
@@ -38,9 +37,7 @@ body {
 .main-text .line:nth-child(1) { animation: slideIn 0.8s ease-out 0.5s forwards; }
 .main-text .line:nth-child(2) { animation: slideIn 0.8s ease-out 1.2s forwards; }
 
-.accent {
-  color: #ffd700; font-size: 88px;
-}
+.accent { color: #ffd700; font-size: 88px; }
 .divider {
   width: 200px; height: 2px;
   background: linear-gradient(90deg, transparent, #ffd700, transparent);
@@ -69,11 +66,11 @@ body {
   <div class="ring"></div>
   <div class="ring"></div>
   <div class="main-text">
-    <span class="line"><span class="accent">300万円</span>が</span>
-    <span class="line">人生を変える数学的根拠</span>
+    <span class="line">{{title_line1}}</span>
+    <span class="line">{{title_line2}}</span>
   </div>
   <div class="divider"></div>
-  <div class="sub-text">最初の一歩 — 動けなかったあなたへ</div>
+  <div class="sub-text">{{subtitle}}</div>
 </div>
 </body>
 </html>
