@@ -23,7 +23,7 @@ def load_config():
 _used_videos = set()  # Track used videos within a session to avoid reuse
 
 
-def fetch_video(query: str, min_duration: int = 8) -> str | None:
+def fetch_video(query: str, min_duration: int = 15) -> str | None:
     """
     Pixabay APIから動画を検索し、キャッシュディレクトリにダウンロードする。
     同セッション内で同じ動画が使われないようにトラッキングする。

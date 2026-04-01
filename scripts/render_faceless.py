@@ -150,16 +150,50 @@ asyncio.run(main())
 
 # ── Stock Video + Overlay Composite ───────────────────────────
 
+def _get_video_duration(path: str) -> float:
+    """ffprobeで動画の尺を取得"""
+    r = subprocess.run(
+        ["ffprobe", "-v", "quiet", "-show_format", path],
+        capture_output=True, text=True, timeout=10
+    )
+    for line in r.stdout.splitlines():
+        if line.startswith("duration="):
+            try:
+                return float(line.split("=")[1])
+            except ValueError:
+                pass
+    return 0.0
+
+
 def render_stock_overlay(stock_video: str, overlay_png: str, output_mp4: str,
                          duration_sec: float, config: dict, seek_sec: float = 2):
-    """ストック動画にテキストオーバーレイ(透過PNG)を合成"""
+    """ストック動画にテキストオーバーレイ(透過PNG)を合成。素材が短い場合はループ。"""
     brightness = config["visuals"]["stock_brightness_adjust"]
     crf = config["video"]["crf"]
     fps = config["video"]["fps"]
 
+    # Adjust seek based on actual video duration
+    stock_dur = _get_video_duration(stock_video)
+    if stock_dur > 0:
+        # Ensure enough footage: need seek_sec + duration_sec
+        available = stock_dur - seek_sec
+        if available < duration_sec:
+            # Reduce seek or set to 0
+            seek_sec = max(0, stock_dur - duration_sec - 0.5)
+            if seek_sec < 0:
+                seek_sec = 0
+
+    # If stock video is still too short even with seek=0, use loop
+    use_loop = stock_dur > 0 and stock_dur < duration_sec + 0.5
+
+    if use_loop:
+        input_args = ["-stream_loop", "-1", "-t", f"{duration_sec:.2f}", "-i", stock_video]
+    else:
+        input_args = ["-ss", str(seek_sec), "-t", f"{duration_sec:.2f}", "-i", stock_video]
+
     cmd = [
         "ffmpeg", "-y",
-        "-ss", str(seek_sec), "-t", f"{duration_sec:.2f}", "-i", stock_video,
+        *input_args,
         "-i", overlay_png,
         "-filter_complex",
         f"[0:v]scale=1920:1080:force_original_aspect_ratio=increase,"
